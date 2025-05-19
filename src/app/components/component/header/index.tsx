@@ -22,7 +22,7 @@ function Header({title, isMain}: Props)
              {
                 !isMain ?
                 <TouchableOpacity onPress={()=> navigation.navigate('Home') }>
-                    <Feather name="trash" size={24} color="#001858"   />
+                    <Feather name="arrow-left" size={24} color="#001858"   />
                 </TouchableOpacity>
                 :
                 <View></View>

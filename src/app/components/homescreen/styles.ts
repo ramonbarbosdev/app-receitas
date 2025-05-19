@@ -10,6 +10,26 @@ export const styles = StyleSheet.create
         padding: 15,
 
 
+    },
+     card:
+    {
+        height:'80%',
+
+    },
+     button_add:
+    {
+        height:'10%',
+        alignItems:"center",
+        justifyContent:"center",
+
+    },
+    button_add_box:
+    {
+        backgroundColor:'#ff8e3c',
+        padding:15,
+        borderRadius:30
     }
+
+    
 
 })

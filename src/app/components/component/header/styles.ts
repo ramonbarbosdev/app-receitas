@@ -5,8 +5,8 @@ export const styles = StyleSheet.create
     container_header:
     {
         padding: 15,
-        flexDirection:"row"
-
+        flexDirection:"row",
+        height:'10%'
     },
     box:
     {
