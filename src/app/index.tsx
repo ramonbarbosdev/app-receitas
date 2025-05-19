@@ -1,23 +1,18 @@
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './components/homescreen';
 
-import {FlatList, Text, TouchableOpacity, View} from "react-native";
-import { Feather } from '@expo/vector-icons'; // Se estiver usando Expo
-import { Link } from "expo-router";
-import Header from "./components/component/header";
-import { styles } from "./styles";
+export type RootStackParamList = {
+  Home: undefined;
 
+};
 
-function Index()
-{
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-    return(
-        <View style={styles.container} >
-            {/* <Header title=""/> */}
-             <TouchableOpacity style={styles.button}>
-                <Link style={styles.button_title}  href="/components/homescreen" >Entrar</Link>    
-            </TouchableOpacity>     
-        </View>
-    )
+export default function App() {
+  return (
+    <Stack.Navigator initialRouteName="Home"  /*screenOptions={{ headerShown: false }}*/>
+      <Stack.Screen name="Home" component={HomeScreen}   options={{ headerShown: false }} />
+    </Stack.Navigator>
+  );
 }
-
-
-export default Index;
