@@ -10,14 +10,12 @@ export const styles = StyleSheet.create
     },
     box:
     {
-        backgroundColor:'#ff8e3c',
         width:'33.33%',
         justifyContent:"center",
         alignItems:"center"
     },
     box_back:
     {
-        backgroundColor:'#ff8e3c',
         width:'33.33%',
         justifyContent:"center",
     },
