@@ -11,6 +11,7 @@ import Item from "../component/item";
 import { useEffect, useState } from "react";
 import { Receitas } from "../../models/Receita";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 
 function HomeScreen()
@@ -36,18 +37,19 @@ function HomeScreen()
     },[list]);
 
     return(
-        <View style={styles.container} >
-            <Header title="Inicio" isMain={true} />
+       <SafeAreaView style={{ flex: 1 }}>
+            <View style={styles.container}>
+                <Header title="Inicio" isMain={true} />
 
-            <View style={styles.button_add}>
-                <TouchableOpacity  style={styles.button_add_box} onPress={() => navigation.navigate('CreateRecipeScreen')}>
-                     <Feather name="plus" size={24} color="#fff"   />
-                </TouchableOpacity>
+                <View style={styles.button_add}>
+                    <TouchableOpacity  style={styles.button_add_box} onPress={() => navigation.navigate('CreateRecipeScreen')}>
+                        <Feather name="plus" size={24} color="#fff"   />
+                    </TouchableOpacity>
+                </View>
+                
+                <Item data={list}/>
             </View>
-            
-            <Item data={list}/>
-            
-        </View>
+        </SafeAreaView>
     )
 }
 

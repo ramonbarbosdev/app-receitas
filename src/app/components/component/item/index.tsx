@@ -19,7 +19,7 @@ function Item({data}: props)
     {
         return(
               <View style={styles.card} >
-                <Card title={item.title} description={item.descrition} />
+                <Card  objeto={item}/>
             </View>
         )
     };

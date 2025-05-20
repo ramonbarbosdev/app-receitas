@@ -10,6 +10,7 @@ import { RootStackParamList } from "../..";
 import { TextInput } from "react-native-gesture-handler";
 import { useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 
 function CreateRecipeScreen()
@@ -58,27 +59,30 @@ function CreateRecipeScreen()
     }
 
     return(
-        <View style={styles.container} >
-            <Header title="New" isMain={false} />
+          <SafeAreaView style={{ flex: 1 }}>
+              <View style={styles.container} >
+                <Header title="New" isMain={false} />
 
-            <View style={styles.form}>
-                <View style={styles.input_box}>
-                    <Text style={styles.input_title}>Titulo</Text>
-                    <TextInput onChangeText={setTitle} style={styles.input}/>
+                <View style={styles.form}>
+                    <View style={styles.input_box}>
+                        <Text style={styles.input_title}>Titulo</Text>
+                        <TextInput onChangeText={setTitle} style={styles.input}/>
+                    </View>
+
+                    <View style={styles.text_area_box}>
+                        <Text style={styles.input_title}>Descrição</Text>
+                        <TextInput onChangeText={setDescrition} style={styles.text_area}/>
+                    </View>
+
+                    <TouchableOpacity style={styles.button} onPress={onSave}>
+                        <Text style={styles.button_title}>Criar</Text>
+                    </TouchableOpacity>
+
                 </View>
-
-                <View style={styles.text_area_box}>
-                    <Text style={styles.input_title}>Descrição</Text>
-                    <TextInput onChangeText={setDescrition} style={styles.text_area}/>
-                </View>
-
-                <TouchableOpacity style={styles.button} onPress={onSave}>
-                    <Text style={styles.button_title}>Criar</Text>
-                </TouchableOpacity>
-
+            
             </View>
-           
-        </View>
+          </SafeAreaView>
+      
     )
 }
 

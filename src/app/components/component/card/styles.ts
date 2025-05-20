@@ -7,13 +7,13 @@ export const styles = StyleSheet.create
         backgroundColor:'#fff',
         borderRadius: 5,
         padding: 15,
-        height:250,
+        height:150,
         marginTop: 10,
     },
     card_header:
     {
         flexDirection:"row",
-        height: '20%',
+        height: '50%',
         alignItems:"center"
 
     },
@@ -47,7 +47,7 @@ export const styles = StyleSheet.create
      },
     card_footer:
     {
-        height:'25%'
+        height:'50%'
     },
     card_footer_box_1:
     {

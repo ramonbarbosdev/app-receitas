@@ -8,11 +8,10 @@ import { RootStackParamList } from "@/src/app";
 
 type Props=
 {
-    title: string
-    description: string
+   objeto: any
 }
 
-function Card({title, description}: Props)
+function Card({objeto}: Props)
 {   
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
@@ -22,20 +21,20 @@ function Card({title, description}: Props)
             <View style={styles.card_header}>
                
                 <View style={styles.card_header_box_1}>
-                     <Text style={styles.card_header_box_title_1}>{title}</Text>
+                     <Text style={styles.card_header_box_title_1}>{objeto.title}</Text>
                 </View>
 
-                <TouchableOpacity style={styles.card_header_box_2} onPress={() => navigation.navigate('Recipe')}>
+                <TouchableOpacity style={styles.card_header_box_2} onPress={() => navigation.navigate('Recipe', { objeto })}>
                     <Text style={styles.card_header_box_title_2}>Ver mais</Text>
                 </TouchableOpacity>
                 
             </View>
 
-            <View style={styles.card_body}>
+            {/* <View style={styles.card_body}>
                  <Text style={styles.card_body_text} >
                         {description.length > 270 ? description.substring(0, 270) + '...' : description}
                 </Text>
-            </View>
+            </View> */}
 
             <View style={styles.card_footer}>
 
