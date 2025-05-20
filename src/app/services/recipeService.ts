@@ -1,24 +1,21 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Receitas } from "../models/Receitas";
 
 const STORAGE_KEY = "recipes";
 
-export type Receita = {
-  id: number;
-  title: string;
-  descrition: string;
-};
 
-export const getAll = async (): Promise<Receita[]> => {
+
+export const getAll = async (): Promise<Receitas[]> => {
   const json = await AsyncStorage.getItem(STORAGE_KEY);
   return json ? JSON.parse(json) : [];
 };
 
-export const getById = async (id: number): Promise<Receita | undefined> => {
+export const getById = async (id: number): Promise<Receitas | undefined> => {
   const recipes = await getAll();
   return recipes.find(r => r.id === id);
 };
 
-export const save = async (data: Receita): Promise<void> => {
+export const save = async (data: Receitas): Promise<void> => {
   const recipes = await getAll();
   const index = recipes.findIndex(r => r.id === data.id);
 

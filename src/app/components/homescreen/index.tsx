@@ -9,7 +9,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../..";
 import Item from "../component/item";
 import { useEffect, useState } from "react";
-import { Receitas } from "../../models/Receita";
+import { Receitas } from "../../models/Receitas";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 

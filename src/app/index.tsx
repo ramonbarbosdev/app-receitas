@@ -5,7 +5,7 @@ import Create from './components/createrecipescreen';
 import Recipe from './components/recipeetailscreen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Receitas } from './models/Receita';
+import { Receitas } from './models/Receitas';
 
 export type RootStackParamList = {
   Home: undefined;

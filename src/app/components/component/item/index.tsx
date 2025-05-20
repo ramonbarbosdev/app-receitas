@@ -1,5 +1,5 @@
 
-import { Receitas } from "@/src/app/models/Receita";
+import { Receitas } from "@/src/app/models/Receitas";
 import {FlatList, Text, TouchableOpacity, View} from "react-native";
 import { styles } from "./styles";
 import Card from "../card";
