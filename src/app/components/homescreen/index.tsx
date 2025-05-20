@@ -42,7 +42,7 @@ function HomeScreen()
                 <Header title="Inicio" isMain={true} />
 
                 <View style={styles.button_add}>
-                    <TouchableOpacity  style={styles.button_add_box} onPress={() => navigation.navigate('CreateRecipeScreen')}>
+                    <TouchableOpacity  style={styles.button_add_box} onPress={() => navigation.navigate('Create')}>
                         <Feather name="plus" size={24} color="#fff"   />
                     </TouchableOpacity>
                 </View>

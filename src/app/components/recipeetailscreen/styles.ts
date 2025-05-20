@@ -8,35 +8,45 @@ export const styles = StyleSheet.create
         flex: 1,
         justifyContent: "flex-start",
         padding: 15,
-
-
     },
     box:
     {
       backgroundColor: '#fff',
-      height:'80%'
+      height:'80%',
+      borderRadius:15,
 
     },
     box_title:
     {
         height:'10%',
+        padding:10,
+        flexDirection:'row'
+
+    },
+    box_title_1:
+    {
+        flexDirection:'row',
+        alignItems: "center",
+        width:'90%',
+
+    },
+    box_title_2:
+    {
+        width:'10%',
         justifyContent:"center",
-        padding:10
+        alignItems:"center",
     },
     title_main:
     {
         color: '#2a2a2a',
-        fontSize: 25,
-        fontWeight:'700'
-    },
-    box_empty:
-    {
-        height:'5%',
+        fontSize: 20,
+        fontWeight:'700',
+        marginLeft:10
     },
     box_recipe:
     {
         height:'80%',
-        padding:10,
+        padding:20,
 
     },
     box_recipe_child_1:
@@ -61,7 +71,34 @@ export const styles = StyleSheet.create
         color: '#2a2a2a',
         fontSize: 14,
         fontWeight:'700'
-    }
+    },
+
+    dropdown:
+    {
+        backgroundColor: "#fff",
+        position: "absolute",
+        top: 40,
+        right: 10,
+        zIndex: 10,
+        borderWidth: 1,
+        borderColor: "#ccc",
+        borderRadius: 5,
+        shadowColor: "#000",
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 5,
+        },
+
+        dropdown_item: {
+        padding: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: "#eee",
+        },
+
+        dropdown_text: {
+        fontSize: 16,
+        },
+
 
 
 })
