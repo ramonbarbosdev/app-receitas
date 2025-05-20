@@ -8,18 +8,16 @@ export const styles = StyleSheet.create
         flex: 1,
         justifyContent: "flex-start",
         padding: 15,
-
-
     },
     form:
     {
-        height: '90%',
+        height: '80%',
         backgroundColor:'#eff0f3',
 
     },
     input_box:
     {
-        height: 70,
+        height: 50,
         marginTop:30,
 
     },
@@ -34,11 +32,11 @@ export const styles = StyleSheet.create
         borderRadius: 7,
         borderColor: '#0d0d0d',
         height: '90%',
-        borderWidth:2,
+        borderWidth:1,
     },
     text_area_box:
     {
-        height: 120,
+        height: 50,
         marginTop:30,
     },
     text_area:
@@ -46,7 +44,7 @@ export const styles = StyleSheet.create
         borderRadius: 7,
         borderColor: '#0d0d0d',
         height: '80%',
-        borderWidth:2,
+        borderWidth:1,
         padding: 5
     },
     button:

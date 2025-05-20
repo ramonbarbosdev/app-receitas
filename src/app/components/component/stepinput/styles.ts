@@ -7,7 +7,8 @@ export const styles = StyleSheet.create
         fontWeight: "500", 
         fontSize: 15, 
         marginBottom: 5,
-        marginTop: 5
+        marginTop: 30,
+
     },
     box_input:
     {
@@ -19,11 +20,11 @@ export const styles = StyleSheet.create
     input_list:
     {
         borderWidth: 1,
-        borderColor: "#ccc",
+        borderColor: "#0d0d0d",
         padding: 10,
         borderRadius: 5,
         marginBottom: 10,
-        width:'85%'
+        width:'85%',
     },
     button_list:
     {
@@ -32,6 +33,8 @@ export const styles = StyleSheet.create
         borderRadius: 5,
         marginBottom: 15,
         width:'10%',
+        alignItems:"center",
+        justifyContent:"center",
 
     },
     button_text:

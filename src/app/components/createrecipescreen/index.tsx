@@ -69,7 +69,7 @@ function Create()
           <SafeAreaView style={{ flex: 1 }}>
               <View style={styles.container} >
 
-               <Header title={id ? "Editar Receita" : "Nova Receita"} isMain={false} />
+               <Header title={id ? "Edição" : "Novo"} isMain={false} />
 
                 <View style={styles.form}>
                     <View style={styles.input_box}>
@@ -88,11 +88,11 @@ function Create()
                             onRemove={(index) => setSteps(prev => prev.filter((_, i) => i !== index))}
                         />
 
-                    <TouchableOpacity style={styles.button} onPress={onSave}>
-                        <Text style={styles.button_title}>Criar</Text>
-                    </TouchableOpacity>
-
                 </View>
+
+                 <TouchableOpacity style={styles.button} onPress={onSave}>
+                    <Text style={styles.button_title}>{id ? "Editar" : "Criar"}</Text>
+                </TouchableOpacity>
             
             </View>
           </SafeAreaView>
