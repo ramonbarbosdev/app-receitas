@@ -7,7 +7,8 @@ export const styles = StyleSheet.create
         backgroundColor:'#fff',
         borderRadius: 5,
         padding: 15,
-        height:250
+        height:250,
+        marginTop: 10,
     },
     card_header:
     {

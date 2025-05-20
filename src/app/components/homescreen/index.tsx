@@ -7,12 +7,34 @@ import Card from "../component/card";
 import { useNavigation } from "expo-router";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../..";
+import Item from "../component/item";
+import { useEffect, useState } from "react";
+import { Receitas } from "../../models/Receita";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 function HomeScreen()
 {
-     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
- 
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    const [list, setList] = useState<Receitas[]>([]);
+
+    async function getData()
+    {
+        try
+        {
+            const dados = await AsyncStorage.getItem('recipes');
+            const itens = dados ? JSON.parse(dados) : [];
+            setList(itens)
+            
+        } catch (e) {
+            console.error("Erro ao carregar dados do AsyncStorage", e);
+        }
+    }
+
+    useEffect(() => {
+        getData();
+    },[list]);
+
     return(
         <View style={styles.container} >
             <Header title="Inicio" isMain={true} />
@@ -23,10 +45,8 @@ function HomeScreen()
                 </TouchableOpacity>
             </View>
             
-
-            <View style={styles.card}>
-                <Card title="Red" description="Red is a very emotionally & visually intense color that can actually have a physical effect on people by raising their metabolism, respiration, heart rate, as well as making them hungry. That combined by with the fact that red is very attention grabbing, you see red used in the branding of pretty much all fast food chains."/>
-            </View>
+            <Item data={list}/>
+            
         </View>
     )
 }

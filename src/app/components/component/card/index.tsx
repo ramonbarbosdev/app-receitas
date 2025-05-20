@@ -13,19 +13,22 @@ type Props=
 }
 
 function Card({title, description}: Props)
-{
+{   
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
     return(
-        <View  style={styles.container}>
+        <View  style={styles.container} >
 
             <View style={styles.card_header}>
                
                 <View style={styles.card_header_box_1}>
                      <Text style={styles.card_header_box_title_1}>{title}</Text>
                 </View>
-                <TouchableOpacity style={styles.card_header_box_2}>
+
+                <TouchableOpacity style={styles.card_header_box_2} onPress={() => navigation.navigate('Recipe')}>
                     <Text style={styles.card_header_box_title_2}>Ver mais</Text>
                 </TouchableOpacity>
+                
             </View>
 
             <View style={styles.card_body}>

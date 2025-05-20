@@ -20,7 +20,8 @@ export const styles = StyleSheet.create
     input_box:
     {
         height: 70,
-        marginTop:15
+        marginTop:30,
+
     },
     input_title:
     {
@@ -38,19 +39,19 @@ export const styles = StyleSheet.create
     text_area_box:
     {
         height: 120,
-        marginTop:15
+        marginTop:30,
     },
     text_area:
     {
         borderRadius: 7,
         borderColor: '#0d0d0d',
-        height: '90%',
+        height: '80%',
         borderWidth:2,
         padding: 5
     },
     button:
     {
-        marginTop: 10,
+        marginTop:30,
         backgroundColor:'#ff8e3c',
         height: 50,
         borderRadius: 7,

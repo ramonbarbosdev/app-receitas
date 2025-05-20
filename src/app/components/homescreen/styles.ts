@@ -11,11 +11,7 @@ export const styles = StyleSheet.create
 
 
     },
-     card:
-    {
-        height:'80%',
-
-    },
+   
      button_add:
     {
         height:'10%',
