@@ -14,25 +14,32 @@ type props =
 
 function Item({data}: props)
 {
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
     const render = ({ item }:{ item: Receitas }) => 
     {
         return(
-              <View style={styles.card} >
+              <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Recipe', { objeto: item })}>
                 <Card  objeto={item}/>
-            </View>
+            </TouchableOpacity>
         )
     };
 
     return(
-         <View style={{ flex: 1 }} >
-            <FlatList
-            data={data}
-            renderItem={render}
-            keyExtractor={(item) => item.id.toString()}
-            />
-        </View>
-    )
+        <FlatList
+        data={data}
+        renderItem={render}
+        keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={{ paddingBottom: 20, paddingHorizontal: 16 }}
+        showsVerticalScrollIndicator={false}
+        ListEmptyComponent={
+                            <View style={{ alignItems: 'center', marginTop: 40 }}>
+                            <Text style={{ color: '#888' }}>Nenhuma receita encontrada</Text>
+                            </View>
+                            }
+    />
+  );
+
 }
 
 

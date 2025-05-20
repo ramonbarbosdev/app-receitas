@@ -19,6 +19,10 @@ function HomeScreen()
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const [list, setList] = useState<Receitas[]>([]);
 
+    // const irParaRecipe = () => {
+    //     navigation.navigate('Recipe', {objeto: list});
+    // }
+
     async function getData()
     {
         try

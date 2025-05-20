@@ -38,7 +38,7 @@ function Create()
                 setTitle(recipe.title);
                 setDescrition(recipe.descrition);
                 setTask(recipe.task || []);
-                setTags(recipe.task || []);
+                setTags(recipe.tags || []);
             }
         }
     }

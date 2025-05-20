@@ -27,7 +27,7 @@ function Recipe()
 
     const onEdit = () =>
     {
-        navigation.navigate('Create', { id: objeto.id })
+        navigation.navigate('Create', { id: objeto.id , })
     }
 
     const onDelete = async () =>
@@ -80,7 +80,7 @@ function Recipe()
 
                     <View style={styles.box_recipe}>
                         <View style={styles.box_recipe_child_1}>
-                            <Text style={styles.box_recipe_child_1_paragraph}>{objeto.title}</Text>
+                            <Text  adjustsFontSizeToFit numberOfLines={1} style={styles.box_recipe_child_1_paragraph}>{objeto.title}</Text>
                         </View>
 
                         <View style={styles.box_recipe_child_2}>

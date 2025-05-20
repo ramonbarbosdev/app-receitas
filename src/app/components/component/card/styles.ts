@@ -1,4 +1,7 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
+
+const { width } = Dimensions.get("window");
 
 export const styles = StyleSheet.create
 ({
@@ -7,7 +10,7 @@ export const styles = StyleSheet.create
         backgroundColor:'#fff',
         borderRadius: 5,
         padding: 15,
-        height:150,
+        maxHeight:150,
         marginTop: 10,
     },
     card_header:
@@ -19,20 +22,21 @@ export const styles = StyleSheet.create
     },
     card_header_box_1:
     {
-        width:'80%'
+        width:'80%',
     },
     card_header_box_2:
     {
-        width:'20%'
+        width:'20%',
+        alignItems:"flex-end"
     },
     card_header_box_title_1:
     {
-        fontSize: 25,
+        fontSize: width * 0.06, 
         fontWeight:"700"
     },
       card_header_box_title_2:
     {
-        fontSize: 15,
+        fontSize: RFValue(14),
         fontWeight:"600"
     },
     card_body:
@@ -42,7 +46,7 @@ export const styles = StyleSheet.create
     },
      card_body_text:
      {
-        fontSize: 15,
+        fontSize: RFValue(14),
         fontWeight:"400",
      },
     card_footer:
@@ -53,28 +57,31 @@ export const styles = StyleSheet.create
     {
         
     },
-    card_footer_box_2:
-    {
-        flexDirection:"row",
-        alignItems:"center"  ,
-        height:'70%'
-    },
-    card_footer_box_2_content:
-    {
-        backgroundColor:'#ff8e3c',
-        alignItems:"center",
-        padding:5,
-        marginLeft:10,
-        borderRadius:5
-    },
+    card_footer_box_2: {
+    flexDirection: "row",
+    flexWrap: "wrap",         
+    alignItems: "center",
+    rowGap: 5,                
+    columnGap: 8,             
+    marginTop: 5,             
+  },
+   card_footer_box_2_content: {
+    backgroundColor: '#ff8e3c',
+    alignItems: "center",
+    justifyContent: "center", 
+    paddingHorizontal: 10,    
+    paddingVertical: 5,
+    borderRadius: 5,
+    marginBottom: 5,          
+},
     card_footer_title:
     {
-        fontSize: 15,
+        fontSize:  RFValue(12),
         fontWeight:"600"
     },
     card_footer_box_2_content_text:
     {
-        fontSize: 15,
+        fontSize: RFValue(10),
         fontWeight:"700",
         color:'#fff'
     },

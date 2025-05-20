@@ -4,20 +4,12 @@ export const styles = StyleSheet.create
 ({
    
     list:
-    {
-        width:  '100%',
-        
-        height:40,
-        borderBottomWidth:1,
-        borderBottomColor: '#001858',
-        marginTop: 10,
-        flexDirection: 'row',
-        justifyContent:"space-between",
-        alignItems: 'center'
+    {       
+        flex:1,
+        backgroundColor:'red',
     },
       card:
     {
-        height:'80%',
 
     },
    

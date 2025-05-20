@@ -27,9 +27,12 @@ export const styles = StyleSheet.create
     },
     input:
     {
-        borderRadius: 7,
-        borderColor: '#0d0d0d',
-        borderWidth:1,
+        borderWidth: 1,
+        borderColor: "#0d0d0d",
+        padding: 10,
+        borderRadius: 5,
+        marginBottom: 10,
+        width:'100%',
     },
     button:
     {
