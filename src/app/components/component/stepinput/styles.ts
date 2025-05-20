@@ -4,11 +4,9 @@ export const styles = StyleSheet.create
 ({
     text_main:
     {
+        marginBottom: 5,
         fontWeight: "500", 
         fontSize: 15, 
-        marginBottom: 5,
-        marginTop: 30,
-
     },
     box_input:
     {

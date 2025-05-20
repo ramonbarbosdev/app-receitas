@@ -23,8 +23,8 @@ function Create()
 {
     const [title, setTitle] = useState("");
     const [descrition, setDescrition] = useState("");
-    const [step, setStep] = useState("");
-    const [steps, setSteps] = useState<string[]>([]);
+    const [task, setTask] = useState<string[]>([]);
+    const [tags, setTags] = useState<string[]>([]);
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const route = useRoute<CreateRouteProp>();
     const { id } = route.params ?? {};
@@ -37,7 +37,8 @@ function Create()
             if (recipe) {
                 setTitle(recipe.title);
                 setDescrition(recipe.descrition);
-                 setSteps(recipe.steps || []);
+                setTask(recipe.task || []);
+                setTags(recipe.task || []);
             }
         }
     }
@@ -53,11 +54,12 @@ function Create()
             id: id ?? Date.now(),
             title,
             descrition,
-            steps,
+            task,
+            tags
         };
 
         await save(data);
-        navigation.navigate("Home");
+        navigation.goBack();
     };
 
     useEffect(() => {
@@ -77,16 +79,26 @@ function Create()
                         <TextInput onChangeText={setTitle} style={styles.input} value={title}/>
                     </View>
 
-                    <View style={styles.text_area_box}>
+                    <View style={styles.input_box}>
                         <Text style={styles.input_title}>Descrição</Text>
-                         <TextInput onChangeText={setDescrition} style={styles.text_area} value={descrition}/>
+                         <TextInput onChangeText={setDescrition} style={styles.input} value={descrition}/>
                     </View>
 
-                     <StepInput
-                            steps={steps}
-                            onAdd={(newStep) => setSteps(prev => [...prev, newStep])}
-                            onRemove={(index) => setSteps(prev => prev.filter((_, i) => i !== index))}
-                        />
+                    <StepInput
+                        title="Passo a Passo"
+                        placeholder="Ex: Fazer feijão"
+                        steps={task}
+                        onAdd={(newStep) => setTask(prev => [...prev, newStep])}
+                        onRemove={(index) => setTask(prev => prev.filter((_, i) => i !== index))}
+                    />
+
+                    <StepInput
+                        title="Tags"
+                        placeholder="Ex: Almoço"
+                        steps={tags}
+                        onAdd={(newStep) => setTags(prev => [...prev, newStep])}
+                        onRemove={(index) => setTags(prev => prev.filter((_, i) => i !== index))}
+                    />
 
                 </View>
 

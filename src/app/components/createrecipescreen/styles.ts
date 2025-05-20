@@ -17,9 +17,7 @@ export const styles = StyleSheet.create
     },
     input_box:
     {
-        height: 50,
-        marginTop:30,
-
+        marginBottom: 10
     },
     input_title:
     {
@@ -31,25 +29,11 @@ export const styles = StyleSheet.create
     {
         borderRadius: 7,
         borderColor: '#0d0d0d',
-        height: '90%',
         borderWidth:1,
-    },
-    text_area_box:
-    {
-        height: 50,
-        marginTop:30,
-    },
-    text_area:
-    {
-        borderRadius: 7,
-        borderColor: '#0d0d0d',
-        height: '80%',
-        borderWidth:1,
-        padding: 5
     },
     button:
     {
-        marginTop:30,
+        
         backgroundColor:'#ff8e3c',
         height: 50,
         borderRadius: 7,

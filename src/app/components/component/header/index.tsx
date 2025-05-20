@@ -21,7 +21,7 @@ function Header({title, isMain}: Props)
            <View  style={styles.box_back}>
              {
                 !isMain ?
-                <TouchableOpacity onPress={()=> navigation.navigate('Home') }>
+                <TouchableOpacity onPress={()=> navigation.goBack() }>
                     <Feather name="arrow-left" size={24} color="#001858"   />
                 </TouchableOpacity>
                 :

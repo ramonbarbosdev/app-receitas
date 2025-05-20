@@ -51,22 +51,34 @@ export const styles = StyleSheet.create
     },
     box_recipe_child_1:
     {
-        height:'10%',
+        height:'5%',
         justifyContent:"center",
         marginBottom:20
     },
-    box_recipe_child_1_text:
+    box_recipe_child_1_paragraph:
     {
         color: '#2a2a2a',
-        fontSize: 20,
+        fontSize: 18,
         fontWeight:'700'
     },
     box_recipe_child_2:
     {
-        height:'80%',
+        height:'10%',
         marginBottom:15
     },
-    box_recipe_child_2_text:
+    text:
+    {
+        fontSize: 14,
+        marginLeft: 10,
+        marginBottom: 4,
+        color: '#444'
+    },
+     box_recipe_child_3:
+    {
+        height:'30%',
+        marginBottom:15
+    },
+    box_recipe_child_paragraph:
     {
         color: '#2a2a2a',
         fontSize: 14,
@@ -75,29 +87,29 @@ export const styles = StyleSheet.create
 
     dropdown:
     {
-        backgroundColor: "#fff",
-        position: "absolute",
-        top: 40,
-        right: 10,
-        zIndex: 10,
-        borderWidth: 1,
-        borderColor: "#ccc",
-        borderRadius: 5,
-        shadowColor: "#000",
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
-        elevation: 5,
-        },
+    backgroundColor: "#fff",
+    position: "absolute",
+    top: 40,
+    right: 10,
+    zIndex: 10,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
+    },
 
-        dropdown_item: {
-        padding: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: "#eee",
-        },
+    dropdown_item: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#eee",
+    },
 
-        dropdown_text: {
-        fontSize: 16,
-        },
+    dropdown_text: {
+    fontSize: 16,
+    },
 
 
 

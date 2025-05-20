@@ -4,12 +4,14 @@ import { styles } from "./styles";
 import { Entypo, Feather } from "@expo/vector-icons";
 
 interface StepInputProps {
+  title: string;
+  placeholder: string;
   steps: string[];
   onAdd: (step: string) => void;
   onRemove: (index: number) => void;
 }
 
-export default function StepInput({ steps, onAdd, onRemove }: StepInputProps) {
+export default function StepInput({ title, placeholder, steps, onAdd, onRemove }: StepInputProps) {
   const [step, setStep] = useState("");
 
   const handleAdd = () =>
@@ -23,12 +25,12 @@ export default function StepInput({ steps, onAdd, onRemove }: StepInputProps) {
   return (
     <View>
       <Text style={styles.text_main}>
-        Passo a passo
+        {title}
       </Text>
 
       <View  style={styles.box_input}>
          <TextInput
-            placeholder="Ex: Ferver a água"
+            placeholder={placeholder}
             value={step}
             onChangeText={setStep}
             style={styles.input_list}

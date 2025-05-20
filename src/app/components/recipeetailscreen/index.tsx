@@ -32,9 +32,8 @@ function Recipe()
 
     const onDelete = async () =>
     {
-        
         await deleteById(objeto.id);
-        navigation.navigate("Home");
+        navigation.goBack();
     };
 
     return(
@@ -81,12 +80,27 @@ function Recipe()
 
                     <View style={styles.box_recipe}>
                         <View style={styles.box_recipe_child_1}>
-                            <Text style={styles.box_recipe_child_1_text}>{objeto.title}</Text>
+                            <Text style={styles.box_recipe_child_1_paragraph}>{objeto.title}</Text>
                         </View>
 
                         <View style={styles.box_recipe_child_2}>
-                            <Text style={styles.box_recipe_child_2_text}>{objeto.descrition}</Text>
+                            <Text style={styles.box_recipe_child_paragraph}>Descrição:</Text>
+                            <Text style={styles.text}>{objeto.descrition}</Text>
                         </View>
+                      
+
+                        <View style={styles.box_recipe_child_3}>
+                            <Text style={styles.box_recipe_child_paragraph}>Passos:</Text>
+                            {
+                                objeto.task?.map((step: string, index: number) => (
+                                <Text key={index} style={styles.text}>
+                                    {index + 1}. {step}
+                                </Text>
+                                ))
+                            }
+                        </View>
+
+                      
                     </View>
                     
                 </View>
