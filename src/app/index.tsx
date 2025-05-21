@@ -1,6 +1,6 @@
 
 import {FlatList, Text, TouchableOpacity, View} from "react-native";
-import { Feather } from '@expo/vector-icons'; // Se estiver usando Expo
+import { Feather, Ionicons } from '@expo/vector-icons'; // Se estiver usando Expo
 import { Link, useNavigation, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -10,6 +10,7 @@ import { stylesHome } from "./styles/stylesHome";
 import { Receitas } from "./models/Receitas";
 import Item from "./components/component/item";
 import Header from "./components/component/header";
+import FAB from "./components/component/fab";
 
 
 function HomeScreen()
@@ -41,12 +42,10 @@ function HomeScreen()
             <View style={styles.container}>
                 <Header title="Inicio" isMain={true} />
 
-                <View style={styles.button_add}>
-                    <TouchableOpacity  style={styles.button_add_box} onPress={()=>router.push('/components/createrecipescreen')}>
-                        <Feather name="plus" size={24} color="#fff"   />
-                    </TouchableOpacity>
-                </View>
-                
+               
+
+                <FAB onPress={() => router.push('/components/createrecipescreen')} />
+                            
                 <Item data={list}/>
             </View>
         </SafeAreaView>

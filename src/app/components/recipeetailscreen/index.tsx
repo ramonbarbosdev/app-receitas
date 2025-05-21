@@ -33,7 +33,7 @@ function Recipe()
 
    const onDelete = useCallback(async () => {
     await deleteById(object.id);
-    // navigation.goBack();
+    router.back();
     }, [object]);
 
     return(

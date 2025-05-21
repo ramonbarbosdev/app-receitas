@@ -1,7 +1,6 @@
 
 import { Receitas } from "@/src/app/models/Receitas";
 import {FlatList, Text, TouchableOpacity, View} from "react-native";
-import { styles } from "./styles";
 import Card from "../card";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Link, useNavigation, useRouter } from "expo-router";
@@ -25,7 +24,7 @@ function Item({data}: props)
     const render = ({ item }:{ item: Receitas }) => 
     {
         return(
-              <TouchableOpacity style={styles.card} onPress={() => open(item)}>
+              <TouchableOpacity style={""} onPress={() => open(item)}>
                 <Card  objeto={item}/>
                 <Link href={'/components/recipeetailscreen'}></Link>
             </TouchableOpacity>

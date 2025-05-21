@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { CustomTheme, lightTheme, darkTheme } from './theme';
 
+export type Theme = 'light' | 'dark';
+
 type ThemeContextType = {
   theme: CustomTheme;
   toggleTheme: () => void;
