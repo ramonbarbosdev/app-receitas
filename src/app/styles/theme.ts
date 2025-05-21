@@ -37,11 +37,11 @@ export const darkTheme: CustomTheme = {
     background: '#121212',
     text: '#fff',
     primary: '#bb86fc',
-    card: '#1f1f1f',
+    card:  '#2a2a2a',
     border: '#333',
     notification: '#ff80ab',
     paragraph_extra: '#fffffe',  
-    background_extra: '#2a2a2a' ,  
+    background_extra: '#1f1f1f' ,  
     button_extra: '#ff8e3c',
     button_text: '#fffffe',
     color_shadow: '#000'

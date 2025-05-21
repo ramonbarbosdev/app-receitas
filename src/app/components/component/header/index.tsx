@@ -22,31 +22,31 @@ function Header({title, isMain}: Props)
     return(
         <View  style={styles.container}>
             
-           <View  style={styles.box_back}>
+           <TouchableOpacity  style={styles.box_back}  onPress={() => router.back()}>
              {
                 !isMain ?
-                <TouchableOpacity onPress={() => router.back()}>
+                <View>
                     <Feather name="arrow-left" size={24} color={theme.colors.paragraph_extra} />
-                </TouchableOpacity>
+                </View>
                 :
                 <View></View>
             }
-           </View>
+           </TouchableOpacity>
 
            <View  style={styles.box_center}>
              <Text  style={styles.header_title}>{title}</Text>
            </View>
 
-           <View  style={styles.box_option}>
+           <TouchableOpacity  style={styles.box_option}  onPress={toggleTheme}>
             {
                 !isMain ?
                 <View></View>
                 :
-                <TouchableOpacity onPress={toggleTheme}>
+                <View>
                     <Feather name="sun" size={24} color={theme.colors.paragraph_extra }   />
-                </TouchableOpacity>
+                </View>
             }
-           </View>
+           </TouchableOpacity>
 
              
         </View>
