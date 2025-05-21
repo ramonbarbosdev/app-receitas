@@ -12,7 +12,8 @@ export const getAll = async (): Promise<Receitas[]> => {
 
 export const getById = async (id: number): Promise<Receitas | undefined> => {
   const recipes = await getAll();
-  return recipes.find(r => r.id === id);
+  const res = recipes.find(r => String(r.id) === String(id));
+  return res;
 };
 
 export const save = async (data: Receitas): Promise<void> => {

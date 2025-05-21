@@ -2,6 +2,10 @@ import { StyleSheet } from "react-native";
 
 export const stylesRecipe = (theme: any) =>  StyleSheet.create
 ({
+    safeArea: {
+        flex: 1,
+        backgroundColor: theme.colors.background_extra,  
+    },
     container:
     {
         backgroundColor:theme.colors.background_extra,

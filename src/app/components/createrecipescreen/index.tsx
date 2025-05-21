@@ -2,7 +2,7 @@
 import {FlatList, Text, TouchableOpacity, View, TextInput} from "react-native";
 import Header from "../component/header";
 import Card from "../component/card";
-import { useNavigation } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -20,6 +20,7 @@ function Create()
     const [tags, setTags] = useState<string[]>([]);
 
     const route = useRoute();
+    const router = useRouter();
     const { id } = (route.params ?? {}) as { id?: number };
 
     const { theme, toggleTheme } = useThemeContext();
@@ -30,6 +31,7 @@ function Create()
         if (id)
         {
             const recipe = await getById(id);
+            
             if (recipe) {
                 setTitle(recipe.title);
                 setDescrition(recipe.descrition);
@@ -55,6 +57,7 @@ function Create()
         };
 
         await save(data);
+         router.back();
     };
 
     useEffect(() => {
@@ -63,7 +66,7 @@ function Create()
     }, [id]);
 
     return(
-          <SafeAreaView style={{ flex: 1 }}>
+          <SafeAreaView style={styles.safeArea}>
               <View style={styles.container} >
 
                <Header title={id ? "Edição" : "Novo"} isMain={false} />

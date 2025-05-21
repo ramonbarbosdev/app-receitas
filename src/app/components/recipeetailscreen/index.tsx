@@ -38,7 +38,7 @@ function Recipe()
 
     return(
         <TouchableWithoutFeedback onPress={closeDropdown}>
-            <SafeAreaView style={{ flex: 1 }}>
+            <SafeAreaView style={styles.safeArea}>
             <View  style={styles.container}>
 
                 <Header title="Receitas" isMain={false} />
