@@ -56,6 +56,7 @@ function Create()
         };
 
         await save(data);
+        
          router.back();
     };
 
