@@ -6,6 +6,7 @@ import Recipe from './components/recipeetailscreen';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Receitas } from './models/Receitas';
+import { ThemeProvider } from './styles/ThemeContext';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -17,7 +18,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-    <GestureHandlerRootView  style={{ flex: 1 }}>
+    <ThemeProvider>
+      <GestureHandlerRootView  style={{ flex: 1 }}>
        <SafeAreaProvider>
          <Stack.Navigator initialRouteName="Home"  /*screenOptions={{ headerShown: false }}*/>
           <Stack.Screen name="Home" component={HomeScreen}   options={{ headerShown: false }} />
@@ -25,7 +27,8 @@ export default function App() {
           <Stack.Screen name="Recipe" component={Recipe}   options={{ headerShown: false }} />
         </Stack.Navigator>
        </SafeAreaProvider>
-    </GestureHandlerRootView>
+      </GestureHandlerRootView>
+    </ThemeProvider>
    
   );
 }

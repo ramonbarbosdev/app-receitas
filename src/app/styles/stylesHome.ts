@@ -1,19 +1,17 @@
 import { StyleSheet } from "react-native";
 
-export const styles = StyleSheet.create
+export const stylesHome = (theme: any) => StyleSheet.create
 ({
     safeArea: {
         flex: 1,
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
     },
     container:
     {
-        backgroundColor:'#eff0f3',
+        backgroundColor:theme.colors.background,
         flex: 1,
         justifyContent: "flex-start",
         padding: 15,
-
-
     },
    
      button_add:

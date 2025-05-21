@@ -3,11 +3,12 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 const { width } = Dimensions.get("window");
 
-export const styles = StyleSheet.create
+
+export const stylesCard = (theme: any) => StyleSheet.create
 ({
     container:
     {
-        backgroundColor:'#fff',
+        backgroundColor: theme.colors.card,
         borderRadius: 5,
         padding: 15,
         maxHeight:150,
@@ -31,11 +32,13 @@ export const styles = StyleSheet.create
     },
     card_header_box_title_1:
     {
+        color: theme.colors.paragraph,
         fontSize: width * 0.06, 
         fontWeight:"700"
     },
       card_header_box_title_2:
     {
+        color:theme.colors.paragraph,
         fontSize: RFValue(14),
         fontWeight:"600"
     },
@@ -44,11 +47,7 @@ export const styles = StyleSheet.create
         width:'100%',
         height:'55%'
     },
-     card_body_text:
-     {
-        fontSize: RFValue(14),
-        fontWeight:"400",
-     },
+    
     card_footer:
     {
         height:'50%'
@@ -66,7 +65,7 @@ export const styles = StyleSheet.create
     marginTop: 5,             
   },
    card_footer_box_2_content: {
-    backgroundColor: '#ff8e3c',
+    backgroundColor: theme.colors.button,
     alignItems: "center",
     justifyContent: "center", 
     paddingHorizontal: 10,    
@@ -77,13 +76,14 @@ export const styles = StyleSheet.create
     card_footer_title:
     {
         fontSize:  RFValue(12),
-        fontWeight:"600"
+        fontWeight:"600",
+        color:theme.colors.paragraph,
     },
     card_footer_box_2_content_text:
     {
         fontSize: RFValue(10),
         fontWeight:"700",
-        color:'#fff'
+        color:theme.colors.button_text,
     },
 
 })

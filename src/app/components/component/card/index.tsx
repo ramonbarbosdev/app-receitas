@@ -2,9 +2,10 @@
 import {FlatList, Text, TouchableOpacity, View} from "react-native";
 import { AntDesign, Feather } from '@expo/vector-icons'; // Se estiver usando Expo
 import { Link, useNavigation } from "expo-router";
-import { styles } from "./styles";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "@/src/app";
+import { useThemeContext } from "@/src/app/styles/ThemeContext";
+import { stylesCard } from "@/src/app/styles/stylesCard";
 
 type Props=
 {
@@ -14,6 +15,9 @@ type Props=
 function Card({objeto}: Props)
 {   
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    const { theme, toggleTheme } = useThemeContext();
+    const styles = stylesCard(theme);
+    
 
     return(
         <View  style={styles.container} >
@@ -25,7 +29,7 @@ function Card({objeto}: Props)
                 </View>
 
                 <TouchableOpacity style={styles.card_header_box_2} >
-                    <AntDesign name="right" size={20} color="#2a2a2a"   />
+                    <AntDesign name="right" size={20} color={theme.colors.paragraph}   />
                 </TouchableOpacity>
                 
             </View>
@@ -43,7 +47,7 @@ function Card({objeto}: Props)
                         <View key={index} style={styles.card_footer_box_2_content}>
                             <Text adjustsFontSizeToFit numberOfLines={1} style={styles.card_footer_box_2_content_text}>
                             {tag}
-                            </Text>
+                        </Text>
                         </View>
                         ))
                     }

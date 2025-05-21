@@ -1,7 +1,7 @@
 
 import {FlatList, Text, TouchableOpacity, View} from "react-native";
 import { Feather } from '@expo/vector-icons'; // Se estiver usando Expo
-import { styles } from "./styles";
+
 import Header from "../component/header";
 import Card from "../component/card";
 import { useNavigation } from "expo-router";
@@ -12,16 +12,16 @@ import { useEffect, useState } from "react";
 import { Receitas } from "../../models/Receitas";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { useThemeContext } from "../../styles/ThemeContext";
+import { stylesHome } from "../../styles/stylesHome";
 
 
 function HomeScreen()
 {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
     const [list, setList] = useState<Receitas[]>([]);
-
-    // const irParaRecipe = () => {
-    //     navigation.navigate('Recipe', {objeto: list});
-    // }
+    const { theme, toggleTheme } = useThemeContext();
+    const styles = stylesHome(theme);
 
     async function getData()
     {
