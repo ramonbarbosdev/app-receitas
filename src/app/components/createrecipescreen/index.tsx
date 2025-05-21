@@ -47,7 +47,6 @@ function Create()
             console.log("Preencha todos os campos");
             return;
         }
-
         const data = {
             id: id ?? Date.now(),
             title,

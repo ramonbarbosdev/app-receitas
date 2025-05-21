@@ -41,7 +41,7 @@ export default function StepInput({ title, placeholder, steps, onAdd, onRemove }
         />
 
         <TouchableOpacity    onPress={handleAdd}  style={styles.button_list}  >
-            <Entypo name="plus" size={20} color={theme.colors.button_text}   />
+            <Entypo name="plus" size={20} color={theme.colors.paragraph_extra}   />
         </TouchableOpacity>
       </View>
 
@@ -61,7 +61,7 @@ export default function StepInput({ title, placeholder, steps, onAdd, onRemove }
           >
             <Text style={{ flex: 1 ,color:theme.colors.paragraph_extra}}>{index + 1}. {item}</Text>
             <TouchableOpacity onPress={() => onRemove(index)}>
-              <Feather name="trash-2" size={20} color={theme.colors.button_text}    />
+              <Feather name="trash-2" size={20} color={theme.colors.paragraph_extra}    />
             </TouchableOpacity>
           </View>
         )}

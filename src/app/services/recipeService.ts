@@ -18,7 +18,7 @@ export const getById = async (id: number): Promise<Receitas | undefined> => {
 
 export const save = async (data: Receitas): Promise<void> => {
   const recipes = await getAll();
-  const index = recipes.findIndex(r => r.id === data.id);
+  const index = recipes.findIndex(r => String(r.id) === String(data.id));
 
   if (index >= 0) {
     recipes[index] = data;
