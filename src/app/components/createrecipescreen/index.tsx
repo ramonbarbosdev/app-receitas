@@ -1,23 +1,16 @@
 
-import {FlatList, Text, TouchableOpacity, View} from "react-native";
-import { Feather } from '@expo/vector-icons'; // Se estiver usando Expo
-import { styles } from "./styles";
+import {FlatList, Text, TouchableOpacity, View, TextInput} from "react-native";
 import Header from "../component/header";
 import Card from "../component/card";
 import { useNavigation } from "expo-router";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../..";
-import { TextInput } from "react-native-gesture-handler";
 import { useEffect, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { RouteProp, useRoute } from "@react-navigation/native";
 import { getById, save } from "../../services/recipeService";
 import StepInput from "../component/stepinput";
-
-
-
-type CreateRouteProp = RouteProp<RootStackParamList, "Create">;
+import { useThemeContext } from "../../styles/ThemeContext";
+import { styleCreate } from "../../styles/stylesCreate";
+import { useRoute } from "@react-navigation/native";
 
 function Create()
 {
@@ -25,9 +18,12 @@ function Create()
     const [descrition, setDescrition] = useState("");
     const [task, setTask] = useState<string[]>([]);
     const [tags, setTags] = useState<string[]>([]);
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-    const route = useRoute<CreateRouteProp>();
-    const { id } = route.params ?? {};
+
+    const route = useRoute();
+    const { id } = (route.params ?? {}) as { id?: number };
+
+    const { theme, toggleTheme } = useThemeContext();
+    const styles = styleCreate(theme);
 
     const onEdit = async () =>
     {
@@ -59,7 +55,6 @@ function Create()
         };
 
         await save(data);
-        navigation.goBack();
     };
 
     useEffect(() => {

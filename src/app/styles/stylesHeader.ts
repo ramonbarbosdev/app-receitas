@@ -31,7 +31,7 @@ export const stylesHeader = (theme: any) => StyleSheet.create
     {
         fontSize:20,
         fontWeight:"600",
-        color: theme.colors.paragraph,
+        color: theme.colors.paragraph_extra,
     }
 
 })

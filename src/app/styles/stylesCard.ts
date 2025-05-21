@@ -4,7 +4,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 const { width } = Dimensions.get("window");
 
 
-export const stylesCard = (theme: any) => StyleSheet.create
+export const stylesCard  = (theme: any) => StyleSheet.create
 ({
     container:
     {
@@ -36,13 +36,13 @@ export const stylesCard = (theme: any) => StyleSheet.create
     },
     card_header_box_title_1:
     {
-        color: theme.colors.paragraph,
+        color: theme.colors.paragraph_extra,
         fontSize: width * 0.06, 
         fontWeight:"700"
     },
       card_header_box_title_2:
     {
-        color:theme.colors.paragraph,
+        color:theme.colors.paragraph_extra,
         fontSize: RFValue(14),
         fontWeight:"600"
     },
@@ -69,7 +69,7 @@ export const stylesCard = (theme: any) => StyleSheet.create
     marginTop: 5,             
   },
    card_footer_box_2_content: {
-    backgroundColor: theme.colors.button,
+    backgroundColor: theme.colors.button_extra,
     alignItems: "center",
     justifyContent: "center", 
     paddingHorizontal: 10,    
@@ -81,7 +81,7 @@ export const stylesCard = (theme: any) => StyleSheet.create
     {
         fontSize:  RFValue(12),
         fontWeight:"600",
-        color:theme.colors.paragraph,
+        color:theme.colors.paragraph_extra,
     },
     card_footer_box_2_content_text:
     {

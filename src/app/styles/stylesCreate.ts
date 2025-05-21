@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 
-export const styles = StyleSheet.create
+export const styleCreate  = (theme: any) => StyleSheet.create
 ({
     container:
     {
-        backgroundColor:'#eff0f3',
+        backgroundColor:theme.colors.background_extra,
         flex: 1,
         justifyContent: "flex-start",
         padding: 15,
@@ -12,7 +12,7 @@ export const styles = StyleSheet.create
     form:
     {
         height: '80%',
-        backgroundColor:'#eff0f3',
+        backgroundColor:theme.colors.background_extra,
 
     },
     input_box:
@@ -21,6 +21,7 @@ export const styles = StyleSheet.create
     },
     input_title:
     {
+        color:theme.colors.paragraph_extra,
        marginBottom: 5,
        fontSize:15,
        fontWeight:'500'
@@ -28,11 +29,12 @@ export const styles = StyleSheet.create
     input:
     {
         borderWidth: 1,
-        borderColor: "#0d0d0d",
+        borderColor: theme.colors.paragraph_extra,
         padding: 10,
         borderRadius: 5,
         marginBottom: 10,
         width:'100%',
+        color: theme.colors.paragraph_extra, 
     },
     button:
     {
@@ -46,7 +48,7 @@ export const styles = StyleSheet.create
     },
     button_title:
     {
-        color:'#eff0f3',
+        color: theme.colors.button_text,
         fontSize:20,
         fontWeight:'500'
     }

@@ -2,25 +2,23 @@
 import {FlatList, Text, TouchableOpacity, TouchableWithoutFeedback, View} from "react-native";
 import { AntDesign, Feather, FontAwesome5 } from '@expo/vector-icons'; // Se estiver usando Expo
 
-import { RootStackParamList } from "@/src/app";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import Header from "../component/header";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useState } from "react";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useCallback, useState } from "react";
 import { useNavigation } from "expo-router";
 import { deleteById } from "../../services/recipeService";
 import { useThemeContext } from "../../styles/ThemeContext";
 import { stylesRecipe } from "../../styles/stylesRecipe";
+import { useRouter, useSearchParams } from "expo-router/build/hooks";
+import { Receitas } from "../../models/Receitas";
+import { useObjectStore } from "../../zutand";
 
-type RecipeRouteProp = RouteProp<RootStackParamList, 'Recipe'>;
 
 function Recipe()
 {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-    
-    const route = useRoute<RecipeRouteProp>();
-    const {objeto} = route.params;
+    const { object } = useObjectStore() as { object: Receitas };
+    const router = useRouter();
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const { theme, toggleTheme } = useThemeContext();
     const styles = stylesRecipe(theme);
@@ -30,14 +28,13 @@ function Recipe()
 
     const onEdit = () =>
     {
-        navigation.navigate('Create', { id: objeto.id , })
+       router.push({ pathname: '/components/createrecipescreen', params: { id: object.id } });
     }
 
-    const onDelete = async () =>
-    {
-        await deleteById(objeto.id);
-        navigation.goBack();
-    };
+   const onDelete = useCallback(async () => {
+    await deleteById(object.id);
+    // navigation.goBack();
+    }, [object]);
 
     return(
         <TouchableWithoutFeedback onPress={closeDropdown}>
@@ -51,7 +48,7 @@ function Recipe()
                     <View style={styles.box_title}>
                        <View style={styles.box_title_1}>
                              <Text style={styles.title_main}>
-                                <Feather name="codepen" size={24} color={ theme.colors.paragraph}   />
+                                <Feather name="codepen" size={24} color={ theme.colors.paragraph_extra}   />
                             </Text>
                             <Text style={styles.title_main}>
                                 Modo de preparo
@@ -61,7 +58,7 @@ function Recipe()
                        {/*  dropdow */}
                        <TouchableOpacity  style={styles.box_title_2} onPress={(e) => {e.stopPropagation?.(); toggleDropdown();}}>
                             <Text style={styles.title_main}>
-                                <FontAwesome5 name="ellipsis-v" size={20} color={ theme.colors.paragraph}  />
+                                <FontAwesome5 name="ellipsis-v" size={20} color={ theme.colors.paragraph_extra}  />
                             </Text>
                        </TouchableOpacity>
                     </View>
@@ -83,19 +80,19 @@ function Recipe()
 
                     <View style={styles.box_recipe}>
                         <View style={styles.box_recipe_child_1}>
-                            <Text  adjustsFontSizeToFit numberOfLines={1} style={styles.box_recipe_child_1_paragraph}>{objeto.title}</Text>
+                            <Text  adjustsFontSizeToFit numberOfLines={1} style={styles.box_recipe_child_1_paragraph}>{object.title}</Text>
                         </View>
 
                         <View style={styles.box_recipe_child_2}>
                             <Text style={styles.box_recipe_child_paragraph}>Descrição:</Text>
-                            <Text style={styles.text}>{objeto.descrition}</Text>
+                            <Text style={styles.text}>{object.descrition}</Text>
                         </View>
                       
 
                         <View style={styles.box_recipe_child_3}>
                             <Text style={styles.box_recipe_child_paragraph}>Passos:</Text>
                             {
-                                objeto.task?.map((step: string, index: number) => (
+                                object.task?.map((step: string, index: number) => (
                                 <Text key={index} style={styles.text}>
                                     {index + 1}. {step}
                                 </Text>

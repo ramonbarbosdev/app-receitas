@@ -3,9 +3,9 @@ import { Receitas } from "@/src/app/models/Receitas";
 import {FlatList, Text, TouchableOpacity, View} from "react-native";
 import { styles } from "./styles";
 import Card from "../card";
-import { useNavigation } from "expo-router";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "@/src/app";
+import { Link, useNavigation, useRouter } from "expo-router";
+import { useObjectStore } from "@/src/app/zutand";
 
 type props =
 {
@@ -14,13 +14,20 @@ type props =
 
 function Item({data}: props)
 {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    const router = useRouter();
+
+    function open(item: any)
+    {
+          useObjectStore.getState().setObject(item);
+          router.push('/components/recipeetailscreen');
+    }
 
     const render = ({ item }:{ item: Receitas }) => 
     {
         return(
-              <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('Recipe', { objeto: item })}>
+              <TouchableOpacity style={styles.card} onPress={() => open(item)}>
                 <Card  objeto={item}/>
+                <Link href={'/components/recipeetailscreen'}></Link>
             </TouchableOpacity>
         )
     };

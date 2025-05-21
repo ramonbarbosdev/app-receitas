@@ -1,12 +1,13 @@
 import { StyleSheet } from "react-native";
 
-export const styles = StyleSheet.create
+export const stylesStep  = (theme: any) => StyleSheet.create
 ({
     text_main:
     {
         marginBottom: 5,
         fontWeight: "500", 
         fontSize: 15, 
+        color:theme.colors.paragraph_extra,
     },
     box_input:
     {
@@ -18,15 +19,16 @@ export const styles = StyleSheet.create
     input_list:
     {
         borderWidth: 1,
-        borderColor: "#0d0d0d",
+        borderColor: theme.colors.paragraph_extra,
         padding: 10,
         borderRadius: 5,
         marginBottom: 10,
         width:'85%',
+        color: theme.colors.paragraph_extra, 
     },
     button_list:
     {
-        backgroundColor: "#ff8e3c",
+        backgroundColor:theme.colors.button_extra,
         padding: 10,
         borderRadius: 5,
         marginBottom: 15,
@@ -37,7 +39,8 @@ export const styles = StyleSheet.create
     },
     button_text:
     {
-        color: "#fff", textAlign: "center"
+        color:theme.colors.button_text,
+        textAlign: "center"
     }
 
 })

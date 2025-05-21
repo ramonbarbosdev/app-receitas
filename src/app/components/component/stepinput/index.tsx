@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, FlatList } from "react-native";
-import { styles } from "./styles";
 import { Entypo, Feather } from "@expo/vector-icons";
+import { useThemeContext } from "@/src/app/styles/ThemeContext";
+import { stylesStep } from "@/src/app/styles/stylesStep";
 
 interface StepInputProps {
   title: string;
@@ -13,6 +14,9 @@ interface StepInputProps {
 
 export default function StepInput({ title, placeholder, steps, onAdd, onRemove }: StepInputProps) {
   const [step, setStep] = useState("");
+
+   const { theme, toggleTheme } = useThemeContext();
+    const styles = stylesStep(theme);
 
   const handleAdd = () =>
   {
@@ -37,7 +41,7 @@ export default function StepInput({ title, placeholder, steps, onAdd, onRemove }
         />
 
         <TouchableOpacity    onPress={handleAdd}  style={styles.button_list}  >
-            <Entypo name="plus" size={20} color="#eff0f3"   />
+            <Entypo name="plus" size={20} color={theme.colors.button_text}   />
         </TouchableOpacity>
       </View>
 
@@ -55,9 +59,9 @@ export default function StepInput({ title, placeholder, steps, onAdd, onRemove }
               justifyContent: "space-between",
             }}
           >
-            <Text style={{ flex: 1 }}>{index + 1}. {item}</Text>
+            <Text style={{ flex: 1 ,color:theme.colors.paragraph_extra}}>{index + 1}. {item}</Text>
             <TouchableOpacity onPress={() => onRemove(index)}>
-              <Feather name="trash-2" size={20} color="#2a2a2a"   />
+              <Feather name="trash-2" size={20} color={theme.colors.button_text}    />
             </TouchableOpacity>
           </View>
         )}
