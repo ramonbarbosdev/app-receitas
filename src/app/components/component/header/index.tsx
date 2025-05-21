@@ -1,5 +1,5 @@
 
-import {FlatList, Text, TouchableOpacity, View} from "react-native";
+import {FlatList,  Text, TouchableOpacity, View} from "react-native";
 import { Feather } from '@expo/vector-icons'; // Se estiver usando Expo
 import { Link, useNavigation } from "expo-router";
 
@@ -7,7 +7,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "@/src/app";
 import { useThemeContext } from "@/src/app/styles/ThemeContext";
 import { stylesHeader } from "@/src/app/styles/stylesHeader";
-
+import { StatusBar } from 'expo-status-bar';
 type Props=
 {
     title: string
@@ -22,6 +22,7 @@ function Header({title, isMain}: Props)
 
     return(
         <View  style={styles.container}>
+            
            <View  style={styles.box_back}>
              {
                 !isMain ?

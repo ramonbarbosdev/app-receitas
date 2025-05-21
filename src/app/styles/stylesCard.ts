@@ -13,6 +13,10 @@ export const stylesCard = (theme: any) => StyleSheet.create
         padding: 15,
         maxHeight:150,
         marginTop: 10,
+        shadowColor: theme.colors.color_shadow,
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 5,
     },
     card_header:
     {

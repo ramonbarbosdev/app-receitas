@@ -4,7 +4,7 @@ export const stylesHome = (theme: any) => StyleSheet.create
 ({
     safeArea: {
         flex: 1,
-        // backgroundColor: '#fff',
+        backgroundColor: theme.colors.background 
     },
     container:
     {

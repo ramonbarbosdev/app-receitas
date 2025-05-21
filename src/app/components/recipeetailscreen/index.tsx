@@ -3,7 +3,6 @@ import {FlatList, Text, TouchableOpacity, TouchableWithoutFeedback, View} from "
 import { AntDesign, Feather, FontAwesome5 } from '@expo/vector-icons'; // Se estiver usando Expo
 
 import { RootStackParamList } from "@/src/app";
-import { styles } from "./styles";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import Header from "../component/header";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -11,6 +10,8 @@ import { useState } from "react";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "expo-router";
 import { deleteById } from "../../services/recipeService";
+import { useThemeContext } from "../../styles/ThemeContext";
+import { stylesRecipe } from "../../styles/stylesRecipe";
 
 type RecipeRouteProp = RouteProp<RootStackParamList, 'Recipe'>;
 
@@ -21,6 +22,8 @@ function Recipe()
     const route = useRoute<RecipeRouteProp>();
     const {objeto} = route.params;
     const [dropdownVisible, setDropdownVisible] = useState(false);
+    const { theme, toggleTheme } = useThemeContext();
+    const styles = stylesRecipe(theme);
 
     const toggleDropdown = () => setDropdownVisible(!dropdownVisible);
     const closeDropdown = () => dropdownVisible && setDropdownVisible(false);
@@ -48,7 +51,7 @@ function Recipe()
                     <View style={styles.box_title}>
                        <View style={styles.box_title_1}>
                              <Text style={styles.title_main}>
-                                <Feather name="codepen" size={24} color="#2a2a2a"   />
+                                <Feather name="codepen" size={24} color={ theme.colors.paragraph}   />
                             </Text>
                             <Text style={styles.title_main}>
                                 Modo de preparo
@@ -58,7 +61,7 @@ function Recipe()
                        {/*  dropdow */}
                        <TouchableOpacity  style={styles.box_title_2} onPress={(e) => {e.stopPropagation?.(); toggleDropdown();}}>
                             <Text style={styles.title_main}>
-                                <FontAwesome5 name="ellipsis-v" size={20} color="#2a2a2a"   />
+                                <FontAwesome5 name="ellipsis-v" size={20} color={ theme.colors.paragraph}  />
                             </Text>
                        </TouchableOpacity>
                     </View>

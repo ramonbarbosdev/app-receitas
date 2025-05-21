@@ -1,27 +1,30 @@
 import { StyleSheet } from "react-native";
 
-export const styles = StyleSheet.create
+export const stylesRecipe = (theme: any) =>  StyleSheet.create
 ({
     container:
     {
-        backgroundColor:'#eff0f3',
+        backgroundColor:theme.colors.background,
         flex: 1,
         justifyContent: "flex-start",
         padding: 15,
     },
     box:
     {
-      backgroundColor: '#fff',
-      height:'80%',
-      borderRadius:15,
-
+        backgroundColor:theme.colors.card,
+        height:'80%',
+        borderRadius:15,
+        shadowColor: theme.colors.color_shadow,
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 5,
     },
     box_title:
     {
         height:'10%',
         padding:10,
-        flexDirection:'row'
-
+        flexDirection:'row',
+       
     },
     box_title_1:
     {
@@ -38,7 +41,7 @@ export const styles = StyleSheet.create
     },
     title_main:
     {
-        color: '#2a2a2a',
+        color: theme.colors.paragraph,
         fontSize: 20,
         fontWeight:'700',
         marginLeft:10
@@ -57,7 +60,7 @@ export const styles = StyleSheet.create
     },
     box_recipe_child_1_paragraph:
     {
-        color: '#2a2a2a',
+        color: theme.colors.paragraph,
         fontSize: 18,
         fontWeight:'700'
     },
@@ -71,7 +74,7 @@ export const styles = StyleSheet.create
         fontSize: 14,
         marginLeft: 10,
         marginBottom: 4,
-        color: '#444'
+        color: theme.colors.paragraph,
     },
      box_recipe_child_3:
     {
@@ -80,35 +83,38 @@ export const styles = StyleSheet.create
     },
     box_recipe_child_paragraph:
     {
-        color: '#2a2a2a',
+        color: theme.colors.paragraph,
         fontSize: 14,
         fontWeight:'700'
     },
 
     dropdown:
     {
-    backgroundColor: "#fff",
-    position: "absolute",
-    top: 40,
-    right: 10,
-    zIndex: 10,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 5,
-    shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 5,
+        backgroundColor: theme.colors.card,
+        position: "absolute",
+        top: 40,
+        right: 10,
+        zIndex: 10,
+        borderWidth: 1,
+        borderColor:  theme.colors.background,
+        borderRadius: 5,
+        shadowColor: theme.colors.color_shadow,
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 5,
     },
 
-    dropdown_item: {
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    dropdown_item:
+    {
+        padding: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: theme.colors.background,
     },
 
-    dropdown_text: {
-    fontSize: 16,
+    dropdown_text:
+    {
+        fontSize: 16,
+        color: theme.colors.paragraph
     },
 
 

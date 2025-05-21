@@ -41,7 +41,7 @@ function HomeScreen()
     },[list]);
 
     return(
-       <SafeAreaView style={{ flex: 1 }}>
+       <SafeAreaView style={styles.safeArea}>
             <View style={styles.container}>
                 <Header title="Inicio" isMain={true} />
 
