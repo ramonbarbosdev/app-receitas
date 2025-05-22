@@ -1,9 +1,7 @@
 
 import {FlatList, Text, TouchableOpacity, View} from "react-native";
-import { Feather, Ionicons } from '@expo/vector-icons'; // Se estiver usando Expo
 import { Link, useNavigation, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useThemeContext } from "./styles/ThemeContext";
 import { stylesHome } from "./styles/stylesHome";
@@ -11,6 +9,7 @@ import { Receitas } from "./models/Receitas";
 import Item from "./components/component/item";
 import Header from "./components/component/header";
 import FAB from "./components/component/fab";
+import { getAll } from "./services/recipeService";
 
 
 function HomeScreen()
@@ -24,12 +23,13 @@ function HomeScreen()
     {
         try
         {
-            const dados = await AsyncStorage.getItem('recipes');
-            const itens = dados ? JSON.parse(dados) : [];
-            setList(itens)
+            const response = await getAll();
+            const itens = response.data;
+            console.log(itens)
+            // setList(itens)
             
         } catch (e) {
-            console.error("Erro ao carregar dados do AsyncStorage", e);
+            console.error("Erro ao carregar dados", e);
         }
     }
 
