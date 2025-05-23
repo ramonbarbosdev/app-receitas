@@ -13,6 +13,8 @@ import { stylesRecipe } from "../../styles/stylesRecipe";
 import { useRouter, useSearchParams } from "expo-router/build/hooks";
 import { Receitas } from "../../models/Receitas";
 import { useObjectStore } from "../../zutand";
+import { useDeleteReceita, useReceitas } from "../../hooks/useReceita";
+
 
 
 function Recipe()
@@ -23,17 +25,25 @@ function Recipe()
     const { theme, toggleTheme } = useThemeContext();
     const styles = stylesRecipe(theme);
 
+    const deleteMutation = useDeleteReceita();
+    
+
     const toggleDropdown = () => setDropdownVisible(!dropdownVisible);
     const closeDropdown = () => dropdownVisible && setDropdownVisible(false);
 
     const onEdit = () =>
     {
-       router.push({ pathname: '/components/createrecipescreen', params: { id: object.id } });
+        router.push({ pathname: '/components/createrecipescreen', params: { id: object.id } });
     }
 
-   const onDelete = useCallback(async () => {
-    await deleteById(object.id);
-    router.back();
+    const onDelete = useCallback(async () => {
+        try
+        {
+            await deleteMutation.mutateAsync(object.id);
+            router.back(); // ou router.replace("/alguma-rota") se quiser navegar
+        } catch (error) {
+            console.error("Erro ao deletar:", error);
+        }
     }, [object]);
 
     return(
@@ -46,24 +56,24 @@ function Recipe()
                 <View style={styles.box}>
 
                     <View style={styles.box_title}>
-                       <View style={styles.box_title_1}>
-                             <Text style={styles.title_main}>
+                    <View style={styles.box_title_1}>
+                            <Text style={styles.title_main}>
                                 <Feather name="codepen" size={24} color={ theme.colors.paragraph_extra}   />
                             </Text>
                             <Text style={styles.title_main}>
                                 Modo de preparo
                             </Text>
-                       </View>
+                    </View>
 
-                       {/*  dropdow */}
-                       <TouchableOpacity  style={styles.box_title_2} onPress={(e) => {e.stopPropagation?.(); toggleDropdown();}}>
+                    {/*  dropdow */}
+                    <TouchableOpacity  style={styles.box_title_2} onPress={(e) => {e.stopPropagation?.(); toggleDropdown();}}>
                             <Text style={styles.title_main}>
                                 <FontAwesome5 name="ellipsis-v" size={20} color={ theme.colors.paragraph_extra}  />
                             </Text>
-                       </TouchableOpacity>
+                    </TouchableOpacity>
                     </View>
 
-                      {/* Dropdown visível */}
+                    {/* Dropdown visível */}
                     {dropdownVisible && (
                         <TouchableWithoutFeedback onPress={(e) => e.stopPropagation?.()}>
                             <View style={styles.dropdown}>
@@ -85,9 +95,9 @@ function Recipe()
 
                         <View style={styles.box_recipe_child_2}>
                             <Text style={styles.box_recipe_child_paragraph}>Descrição:</Text>
-                            <Text style={styles.text}>{object.descrition}</Text>
+                            <Text style={styles.text}>{object.description}</Text>
                         </View>
-                      
+                    
 
                         <View style={styles.box_recipe_child_3}>
                             <Text style={styles.box_recipe_child_paragraph}>Passos:</Text>
@@ -100,7 +110,7 @@ function Recipe()
                             }
                         </View>
 
-                      
+                    
                     </View>
                     
                 </View>

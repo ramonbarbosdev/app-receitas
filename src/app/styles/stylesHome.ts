@@ -33,4 +33,8 @@ export const stylesHome = (theme: any) => StyleSheet.create
     shadowOpacity: 0.3,
     shadowRadius: 3,
   },
+  error: {
+    color: 'red',
+    padding: 20,
+  },
 });

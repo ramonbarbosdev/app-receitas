@@ -26,7 +26,6 @@ function Item({data}: props)
         return(
               <TouchableOpacity style={""} onPress={() => open(item)}>
                 <Card  objeto={item}/>
-                <Link href={'/components/recipeetailscreen'}></Link>
             </TouchableOpacity>
         )
     };

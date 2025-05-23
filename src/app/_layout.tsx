@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider, useThemeContext } from './styles/ThemeContext';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function LayoutInner() {
   const { theme } = useThemeContext();
@@ -24,11 +25,16 @@ function LayoutInner() {
 }
 
 export default function Layout() {
+
+  const queryClient = new QueryClient();
+
   return (
     <ThemeProvider>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+      <QueryClientProvider client={queryClient}>
+         <GestureHandlerRootView style={{ flex: 1 }}>
         <LayoutInner />
       </GestureHandlerRootView>
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }

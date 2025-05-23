@@ -6,16 +6,16 @@ import { useNavigation, useRouter } from "expo-router";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { getById, save } from "../../services/recipeService";
 import StepInput from "../component/stepinput";
 import { useThemeContext } from "../../styles/ThemeContext";
 import { styleCreate } from "../../styles/stylesCreate";
 import { useRoute } from "@react-navigation/native";
+import { useReceitaById, useSaveReceita } from "../../hooks/useReceita";
 
 function Create()
 {
     const [title, setTitle] = useState("");
-    const [descrition, setDescrition] = useState("");
+    const [description, setDescrition] = useState("");
     const [task, setTask] = useState<string[]>([]);
     const [tags, setTags] = useState<string[]>([]);
 
@@ -26,44 +26,38 @@ function Create()
     const { theme, toggleTheme } = useThemeContext();
     const styles = styleCreate(theme);
 
-    const onEdit = async () =>
-    {
-        if (id)
-        {
-            const recipe = await getById(id);
-            
-            if (recipe) {
-                setTitle(recipe.title);
-                setDescrition(recipe.descrition);
-                setTask(recipe.task || []);
-                setTags(recipe.tags || []);
-            }
-        }
-    }
+    const { data, isLoading, isError } = useReceitaById(id ?? 0); 
+    const mutation = useSaveReceita();
 
     const onSave = async () =>
     {
-        if (title.trim() === "" || descrition.trim() === "") {
+        if (title.trim() === "" || description.trim() === "") {
             console.log("Preencha todos os campos");
             return;
         }
-        const data = {
-            id: id ?? Date.now(),
+        const object = {
+            id: id ?? undefined,
             title,
-            descrition,
+            description,
             task,
             tags
         };
 
-        await save(data);
-        
-         router.back();
+         mutation.mutate(object, {
+            onSuccess: () => router.back(),
+            onError: (error) => console.error("Falha ao salvar:", error),
+        });
     };
 
     useEffect(() => {
+        if (data) {
+          setTitle(data.title);
+          setDescrition(data.description);
+          setTask(data.task || []);
+          setTags(data.tags || []);
+        }
+  }, [data]);
 
-    onEdit();
-    }, [id]);
 
     return(
           <SafeAreaView style={styles.safeArea}>
@@ -79,7 +73,7 @@ function Create()
 
                     <View style={styles.input_box}>
                         <Text style={styles.input_title}>Descrição</Text>
-                         <TextInput onChangeText={setDescrition} style={styles.input} value={descrition}/>
+                         <TextInput onChangeText={setDescrition} style={styles.input} value={description}/>
                     </View>
 
                     <StepInput
