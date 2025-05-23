@@ -18,8 +18,7 @@ export const getById = async (id: number) =>
 };
 
 export const saveAll = (data: Receitas): Promise<AxiosResponse<any>> => {
-    console.log("data", data);
-  if (data.id) {
+   if (data.id) {
     return axios.put(`${API_URL}${data.id}`, data);
   } else {
     return axios.post(API_URL, data);

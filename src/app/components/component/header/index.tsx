@@ -28,7 +28,7 @@ function Header({title, isMain}: Props)
                     <Feather name="arrow-left" size={24} color={theme.colors.paragraph_extra} />
                 </TouchableOpacity>
                 :
-                <View></View>
+                <View style={styles.box_back} ></View>
             }
             
           
