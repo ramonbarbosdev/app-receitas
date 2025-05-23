@@ -21,17 +21,17 @@ function Header({title, isMain}: Props)
 
     return(
         <View  style={styles.container}>
-            
-           <TouchableOpacity  style={styles.box_back}  onPress={() => router.back()}>
+
              {
                 !isMain ?
-                <View>
+                 <TouchableOpacity  style={styles.box_back}  onPress={() => router.back()}>
                     <Feather name="arrow-left" size={24} color={theme.colors.paragraph_extra} />
-                </View>
+                </TouchableOpacity>
                 :
                 <View></View>
             }
-           </TouchableOpacity>
+            
+          
 
            <View  style={styles.box_center}>
              <Text  style={styles.header_title}>{title}</Text>
