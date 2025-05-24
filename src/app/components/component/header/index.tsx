@@ -17,6 +17,11 @@ function Header({title, isMain}: Props)
     const styles = style(theme);
     const router = useRouter();
 
+    const onOpenGraph = () =>
+    {
+        router.push('/components/graphscreen/graph');
+    }
+
     return(
         <View  style={styles.container}>
 
@@ -28,8 +33,6 @@ function Header({title, isMain}: Props)
                 :
                 <View style={styles.box_back} ></View>
             }
-            
-          
 
            <View  style={styles.box_center}>
              <Text  style={styles.header_title}>{title}</Text>
@@ -49,9 +52,9 @@ function Header({title, isMain}: Props)
                         onPress: () => toggleTheme(),
                         },
                         {
-                        label: 'Grafico',
+                        label: 'Analise',
                         icon:  <Foundation name="graph-pie" size={24} color={theme.colors.paragraph_extra }   />,
-                        onPress: () => console.log('Grafico'),
+                        onPress: () => onOpenGraph(),
                         },
                     ]}
                     />
