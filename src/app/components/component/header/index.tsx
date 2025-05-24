@@ -1,12 +1,10 @@
 
-import {FlatList,  Text, TouchableOpacity, View} from "react-native";
-import { Feather } from '@expo/vector-icons'; // Se estiver usando Expo
+import {FlatList,  StyleSheet,  Text, TouchableOpacity, View} from "react-native";
+import { Feather, Foundation } from '@expo/vector-icons'; // Se estiver usando Expo
 import { Link, useNavigation, useRouter } from "expo-router";
 
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useThemeContext } from "@/src/app/styles/ThemeContext";
-import { stylesHeader } from "@/src/app/styles/stylesHeader";
-import { StatusBar } from 'expo-status-bar';
+import Dropdown from "@/components/dropdown";
 type Props=
 {
     title: string
@@ -16,7 +14,7 @@ type Props=
 function Header({title, isMain}: Props)
 {
     const { theme, toggleTheme } = useThemeContext();
-    const styles = stylesHeader(theme);
+    const styles = style(theme);
     const router = useRouter();
 
     return(
@@ -37,16 +35,28 @@ function Header({title, isMain}: Props)
              <Text  style={styles.header_title}>{title}</Text>
            </View>
 
-           <TouchableOpacity  style={styles.box_option}  onPress={toggleTheme}>
+           <View  style={styles.box_option}  >
             {
                 !isMain ?
                 <View></View>
                 :
-                <View>
-                    <Feather name="sun" size={24} color={theme.colors.paragraph_extra }   />
-                </View>
+
+                <Dropdown
+                    options={[
+                        {
+                        label: 'Tema',
+                        icon:  <Feather name="sun" size={24} color={theme.colors.paragraph_extra }   />,
+                        onPress: () => toggleTheme(),
+                        },
+                        {
+                        label: 'Grafico',
+                        icon:  <Foundation name="graph-pie" size={24} color={theme.colors.paragraph_extra }   />,
+                        onPress: () => console.log('Grafico'),
+                        },
+                    ]}
+                    />
             }
-           </TouchableOpacity>
+           </View>
 
              
         </View>
@@ -55,3 +65,38 @@ function Header({title, isMain}: Props)
 
 
 export default Header;
+
+const style = (theme: any) => StyleSheet.create({
+ container:
+    {
+        padding: 15,
+        flexDirection:"row",
+        height:'10%',
+        // backgroundColor: theme.colors.background,
+    },
+    box_center:
+    {
+        width:'33.33%',
+        justifyContent:"center",
+        alignItems:"center"
+    },
+    box_back:
+    {
+        width:'33.33%',
+        justifyContent:"center",
+    },
+    box_option:
+    {
+        width:'33.33%',
+        justifyContent:"center",
+        alignItems:"flex-end",
+         overflow: 'visible',
+    },
+    header_title:
+    {
+        fontSize:20,
+        fontWeight:"600",
+        color: theme.colors.paragraph_extra,
+    }
+
+});

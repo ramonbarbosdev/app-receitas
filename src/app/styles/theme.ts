@@ -7,6 +7,7 @@ export interface CustomTheme extends Theme {
     button_extra: string;
     button_text: string;
     color_shadow: string;
+    card_extra: string;
   };
 }
 
@@ -25,7 +26,8 @@ export const lightTheme: CustomTheme = {
     background_extra: '#eff0f3',  
     button_extra: '#ff8e3c',
     button_text: '#fffffe',
-    color_shadow: '#000'
+    color_shadow: '#000',
+    card_extra: '#fff',
   },
 };
 
@@ -44,6 +46,7 @@ export const darkTheme: CustomTheme = {
     background_extra: '#1f1f1f' ,  
     button_extra: '#ff8e3c',
     button_text: '#fffffe',
-    color_shadow: '#000'
+    color_shadow: '#000',
+    card_extra: '#2a2a2a',
   },
 };

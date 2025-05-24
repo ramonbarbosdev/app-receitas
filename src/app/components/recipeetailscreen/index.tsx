@@ -14,6 +14,7 @@ import { useRouter, useSearchParams } from "expo-router/build/hooks";
 import { Receitas } from "../../models/Receitas";
 import { useObjectStore } from "../../zutand";
 import { useDeleteReceita, useReceitas } from "../../hooks/useReceita";
+import Dropdown from "@/components/dropdown";
 
 
 
@@ -21,15 +22,10 @@ function Recipe()
 {
     const { object } = useObjectStore() as { object: Receitas };
     const router = useRouter();
-    const [dropdownVisible, setDropdownVisible] = useState(false);
-    const { theme, toggleTheme } = useThemeContext();
+    const { theme } = useThemeContext();
     const styles = stylesRecipe(theme);
 
     const deleteMutation = useDeleteReceita();
-    
-
-    const toggleDropdown = () => setDropdownVisible(!dropdownVisible);
-    const closeDropdown = () => dropdownVisible && setDropdownVisible(false);
 
     const onEdit = () =>
     {
@@ -47,8 +43,7 @@ function Recipe()
     }, [object]);
 
     return(
-        <TouchableWithoutFeedback onPress={closeDropdown}>
-            <SafeAreaView style={styles.safeArea}>
+        <SafeAreaView style={styles.safeArea}>
             <View  style={styles.container}>
 
                 <Header title="Receitas" isMain={false} />
@@ -65,27 +60,22 @@ function Recipe()
                             </Text>
                     </View>
 
-                    {/*  dropdow */}
-                    <TouchableOpacity  style={styles.box_title_2} onPress={(e) => {e.stopPropagation?.(); toggleDropdown();}}>
-                            <Text style={styles.title_main}>
-                                <FontAwesome5 name="ellipsis-v" size={20} color={ theme.colors.paragraph_extra}  />
-                            </Text>
-                    </TouchableOpacity>
+                     <Dropdown
+                        options={[
+                            {
+                            label: 'Editar',
+                            icon:  null  ,
+                            onPress: () => onEdit(),
+                            },
+                            {
+                            label: 'Deletar',
+                            icon: null   ,
+                            onPress: () => onDelete(),
+                            },
+                        ]}
+                    />
+                    
                     </View>
-
-                    {/* Dropdown visível */}
-                    {dropdownVisible && (
-                        <TouchableWithoutFeedback onPress={(e) => e.stopPropagation?.()}>
-                            <View style={styles.dropdown}>
-                                <TouchableOpacity style={styles.dropdown_item} onPress={onEdit}>
-                                    <Text style={styles.dropdown_text}>Editar</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={styles.dropdown_item} onPress={onDelete}>
-                                    <Text style={styles.dropdown_text}>Excluir</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </TouchableWithoutFeedback>
-                    )}
 
 
                     <View style={styles.box_recipe}>
@@ -116,9 +106,6 @@ function Recipe()
                 </View>
             </View>
         </SafeAreaView>
-        </TouchableWithoutFeedback>
-        
-        
     )
 }
 
