@@ -25,7 +25,7 @@ const BarCustom = ({ data }: Props) => {
 
      const animatedText =  useAnimatedProps( () => {
         return{
-        text: `Contagem: ${state.y.y.value.value}`,
+        text: `Fequência: ${state.y.y.value.value}`,
             defaultValue: ""
         }
     }) 
@@ -43,6 +43,12 @@ const BarCustom = ({ data }: Props) => {
 
   return (
     <View style={styles.container}>
+        {/* Título */}
+        <View style={styles.legendContainer}>
+            <Text style={styles.textinput}>Frequência de Tags</Text>
+        </View>
+
+        {/* Gráfico de barras */}
       <CartesianChart
         data={chartData}
         xKey="x"
@@ -74,7 +80,7 @@ const BarCustom = ({ data }: Props) => {
       {/* Legenda */}
       <View style={styles.legendContainer}>
               { isActive ?
-                <View>
+                <View style={styles.legendItem}>
                     <AnimatedTextInput
                         editable={false}
                         underlineColorAndroid={"transparent"}
@@ -116,6 +122,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap', 
     justifyContent: 'center',
+    marginBottom: 8,
+    alignItems: 'center',
+
   },
   legendItem: {
     flexDirection: 'row',
@@ -135,7 +144,7 @@ const styles = StyleSheet.create({
   },
    textinput:
     {
-        fontSize:30,
+        fontSize:20,
         fontWeight: "bold",
         color: "#000",
     }
