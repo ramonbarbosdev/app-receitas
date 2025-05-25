@@ -38,6 +38,7 @@ export default function StepInput({ title, placeholder, steps, onAdd, onRemove }
             value={step}
             onChangeText={setStep}
             style={styles.input_list}
+            placeholderTextColor={theme.colors.placeholder_extra}
         />
 
         <TouchableOpacity    onPress={handleAdd}  style={styles.button_list}  >

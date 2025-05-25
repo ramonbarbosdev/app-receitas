@@ -1,5 +1,5 @@
 
-import {FlatList, Text, TouchableOpacity, View, TextInput} from "react-native";
+import {FlatList, Text, TouchableOpacity, View, TextInput, StyleSheet} from "react-native";
 import Header from "../component/header";
 import Card from "../component/card";
 import { useNavigation, useRouter } from "expo-router";
@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import StepInput from "../component/stepinput";
 import { useThemeContext } from "../../styles/ThemeContext";
-import { styleCreate } from "../../styles/stylesCreate";
 import { useRoute } from "@react-navigation/native";
 import { useReceitaById, useSaveReceita } from "../../hooks/useReceita";
 
@@ -24,7 +23,7 @@ function Create()
     const { id } = (route.params ?? {}) as { id?: number };
 
     const { theme, toggleTheme } = useThemeContext();
-    const styles = styleCreate(theme);
+    const styles = style(theme);
 
     const { data, isLoading, isError } = useReceitaById(id ?? 0); 
     const mutation = useSaveReceita();
@@ -68,7 +67,7 @@ function Create()
                 <View style={styles.form}>
                     <View style={styles.input_box}>
                         <Text style={styles.input_title}>Titulo</Text>
-                        <TextInput onChangeText={setTitle} style={styles.input} value={title}/>
+                        <TextInput onChangeText={setTitle} style={styles.input} value={title} />
                     </View>
 
                     <View style={styles.input_box}>
@@ -77,6 +76,7 @@ function Create()
                     </View>
 
                     <StepInput
+                    
                         title="Passo a Passo"
                         placeholder="Ex: Fazer feijão"
                         steps={task}
@@ -106,3 +106,65 @@ function Create()
 
 
 export default Create;
+
+
+
+const style = (theme: any) => StyleSheet.create({
+  safeArea: {
+        flex: 1,
+        backgroundColor: theme.colors.background_extra,  
+    },
+    container:
+    {
+        backgroundColor:theme.colors.background_extra,
+        flex: 1,
+        justifyContent: "flex-start",
+        padding: 15,
+    },
+    form:
+    {
+        height: '80%',
+        backgroundColor:theme.colors.background_extra,
+
+    },
+    input_box:
+    {
+        marginBottom: 10
+    },
+    input_title:
+    {
+        color:theme.colors.paragraph_extra,
+       marginBottom: 5,
+       fontSize:15,
+       fontWeight:'500'
+    },
+    input:
+    {
+        borderWidth: 1,
+        borderColor: theme.colors.paragraph_extra,
+        padding: 10,
+        borderRadius: 5,
+        marginBottom: 10,
+        width:'100%',
+        color: theme.colors.paragraph_extra,
+
+    },
+    button:
+    {
+        
+        backgroundColor:'#ff8e3c',
+        height: 50,
+        borderRadius: 7,
+        justifyContent: "center",
+        alignItems:"center",
+
+    },
+    button_title:
+    {
+        color: theme.colors.button_text,
+        fontSize:20,
+        fontWeight:'500'
+    }
+ 
+    
+});

@@ -3,6 +3,7 @@ import { DarkTheme as NavigationDark, DefaultTheme as NavigationLight, Theme } f
 export interface CustomTheme extends Theme {
   colors: Theme['colors'] & {
     paragraph_extra: string;
+    placeholder_extra: string;
     background_extra: string;
     button_extra: string;
     button_text: string;
@@ -28,6 +29,7 @@ export const lightTheme: CustomTheme = {
     button_text: '#fffffe',
     color_shadow: '#000',
     card_extra: '#fff',
+    placeholder_extra: '#2a2a2a',
   },
 };
 
@@ -48,5 +50,6 @@ export const darkTheme: CustomTheme = {
     button_text: '#fffffe',
     color_shadow: '#000',
     card_extra: '#2a2a2a',
+    placeholder_extra: '#ccc',
   },
 };
