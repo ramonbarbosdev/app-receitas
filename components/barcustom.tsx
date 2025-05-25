@@ -1,8 +1,9 @@
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 import React from 'react';
 import { CartesianChart, Bar, useChartPressState } from 'victory-native';
-import { useFont } from '@shopify/react-native-skia';
-import Animated, { useAnimatedProps } from 'react-native-reanimated';
+import { Circle, useFont } from '@shopify/react-native-skia';
+import Animated, { SharedValue, useAnimatedProps } from 'react-native-reanimated';
+import { useThemeContext } from '@/src/app/styles/ThemeContext';
 
 type Props = {
   data: { tag: string; count: number }[];
@@ -15,31 +16,42 @@ const colors = [
   '#F4A261', // laranja
   '#E76F51', // outro tom
 ];
-
 Animated.addWhitelistedNativeProps({text: true})
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
+
 
 const BarCustom = ({ data }: Props) => {
     const font = useFont(require('@/assets/fonts/SpaceMono-Regular.ttf'), 12);
     const { state, isActive} = useChartPressState<{ x: number; y: Record<"y", number> }>({ x: 0, y: { y: 0 } });
 
-     const animatedText =  useAnimatedProps( () => {
-        return{
-        text: `Fequência: ${state.y.y.value.value}`,
+    const animatedText = useAnimatedProps(() => {
+        const val = state?.y?.y?.value?.value ?? 0;
+        return {
+            text: `Frequência: ${val}`,
             defaultValue: ""
-        }
-    }) 
+        };
+    });
 
-  const xLabels = data.map(d => d.tag);
-  const chartData = data.map((item, index) => ({
-    x: index,
-    y: item.count,
-    color: colors[index % colors.length], 
-  }));
+    const xLabels = data.map(d => d.tag);
+    const chartData = data.map((item, index) => ({
+        x: index,
+        y: item.count,
+        color: colors[index % colors.length], 
+    }));
 
-  const maxCount = Math.max(...chartData.map(d => d.y));
+    const maxCount = Math.max(...chartData.map(d => d.y));
 
-  if (!font) return null;
+    if (!font) return null;
+
+    const { theme } = useThemeContext();
+    const styles = style(theme);
+
+    function ToolTip({ x, y }: { x: SharedValue<number>; y: SharedValue<number> })
+    {
+        return <Circle cx={x} cy={y} r={8} color={theme.colors.paragraph_extra} />;
+    }
+
+    const barColors = chartData.map((item) => item.color);
 
   return (
     <View style={styles.container}>
@@ -56,24 +68,33 @@ const BarCustom = ({ data }: Props) => {
         domainPadding={{ left: 50, right: 50, top: 30 }}
         domain={{ y: [0, maxCount + 2] }}
         chartPressState={state}
-
         axisOptions={{
           font,
+          lineColor: theme.colors.paragraph_extra,
+          labelColor: theme.colors.paragraph_extra,
           formatXLabel: (value) => xLabels[value] ?? '',
         }}
       >
-        {({ points, chartBounds }) => (
-          <Bar
-            animate={{type: "spring", duration: 500}}
-            points={points.y}
-            chartBounds={chartBounds}
-            color={''} 
-            roundedCorners={{
-              topLeft: 5,
-              topRight: 5,
-            }}
-            
-          />
+         {({ points, chartBounds }) => (
+          <>
+           
+            {chartData.map((item, index) => (
+            <Bar
+                key={index}
+                points={[points.y[index]]}
+                chartBounds={chartBounds}
+                animate={{ type: 'spring', duration: 500 }}
+                color={item.color}
+                roundedCorners={{
+                topLeft: 5,
+                topRight: 5,
+                }}
+                barWidth={30}
+            />
+            ))}
+
+            {isActive && <ToolTip x={state.x.position} y={state.y.y.position} />}
+          </>
         )}
       </CartesianChart>
 
@@ -108,11 +129,11 @@ const BarCustom = ({ data }: Props) => {
 
 export default BarCustom;
 
-const styles = StyleSheet.create({
+const style = (theme: any) => StyleSheet.create({
   container: {
     height: 380,
     width: '100%',
-    backgroundColor: 'white',
+    backgroundColor: theme.colors.card,
     padding: 10,
     borderRadius: 10,
     shadowColor: '#000',
@@ -140,13 +161,13 @@ const styles = StyleSheet.create({
   },
   legendText: {
     fontSize: 14,
-    color: '#333',
+    color: theme.colors.paragraph_extra,
   },
    textinput:
     {
         fontSize:20,
         fontWeight: "bold",
-        color: "#000",
+        color: theme.colors.paragraph_extra
     }
 
 });

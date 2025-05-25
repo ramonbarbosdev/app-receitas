@@ -86,7 +86,7 @@ const style = (theme: any) => StyleSheet.create({
     marginRight: 10,
   },
   itemText: {
-    color: theme.colors.paragraph,
+    color: theme.colors.paragraph_extra,
     fontSize: 16,
   },
 });
