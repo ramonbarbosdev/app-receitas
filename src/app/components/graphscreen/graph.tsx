@@ -1,4 +1,4 @@
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { useThemeContext } from '../../styles/ThemeContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -6,6 +6,7 @@ import Header from '../component/header';
 import BarCustom from '@/components/barcustom';
 import mapTagsFrequencia from '@/components/mapTagsFreque';
 import { useReceitas } from '../../hooks/useReceita';
+import AreaCustom from '@/components/areacustom';
 
 function Graph() {
     const { theme, toggleTheme } = useThemeContext();
@@ -22,9 +23,13 @@ function Graph() {
         <SafeAreaView style={styles.container}>
              <Header title="Analise" isMain={false} />
 
-             <View>
-                <BarCustom data={frequencias}/>
-             </View>
+             <ScrollView style={styles.scroll}>
+                 <View style={styles.scrollItems}>
+                    <BarCustom data={frequencias}/>
+                    <AreaCustom data={frequencias}/>
+                 </View>
+               
+             </ScrollView>
         </SafeAreaView>
     )
 }
@@ -43,9 +48,18 @@ const style = (theme: any) => StyleSheet.create({
         fontSize: 18,
         fontWeight: '600',
     },
-     error: {
-    color: 'red',
-    padding: 20,
-  },
-
+     error:
+     {
+        color: 'red',
+        padding: 20,
+    },
+    scroll:
+    {
+        flex: 1,
+    },
+    scrollItems:
+    {
+        gap: 20, 
+        flexDirection: 'column',
+    },
 })
