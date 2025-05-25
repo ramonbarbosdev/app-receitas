@@ -10,14 +10,20 @@ function Graph() {
     const { theme, toggleTheme } = useThemeContext();
     const styles = style(theme);
 
-    const dados: any[] = [
-    { id: 1, title: 'Salada', tags: ['vegano', 'rápido'] },
-    { id: 2, title: 'Frango Assado', tags: ['low-carb'] },
-    { id: 3, title: 'Smoothie', tags: ['vegano', 'low-carb', 'rápido'] },
-    // ...
-    ];
-    const frequencias = mapTagsFrequencia(dados);
-    console.log(frequencias);
+ const receitas = [
+  { id: 1, tags: ["rápido"], title: "Salada" },
+  { id: 1, tags: ["rápido"], title: "Salada" },
+  { id: 1, tags: ["rápido"], title: "Salada" },
+  { id: 1, tags: ["rápido"], title: "Salada" },
+  { id: 2, tags: ["low-carb"], title: "Frango Assado" },
+  { id: 3, tags: ["vegano"], title: "Smoothie" },
+  { id: 4, tags: ["low-carb"], title: "Macarrao" },
+  { id: 5, tags: ["vegano"], title: "Barbecue" },
+  { id: 5, tags: ["vegano"], title: "Barbecue" },
+  { id: 6, tags: ["vegano"], title: "Peixe" },
+];
+
+    const frequencias = mapTagsFrequencia(receitas);
 
     return (
         <SafeAreaView style={styles.container}>
