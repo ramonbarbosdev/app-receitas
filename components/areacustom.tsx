@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
-import { Area, CartesianChart, Pie, PolarChart } from 'victory-native'
+import { Area, CartesianChart, getTransformComponents, Pie, PolarChart, setScale, setTranslate, useChartTransformState } from 'victory-native'
 import { useThemeContext } from '@/src/app/styles/ThemeContext';
 import { useFont } from '@shopify/react-native-skia';
 import { PieChartCustomLabel } from './piechartcustomlabel';
+import { useAnimatedReaction, useSharedValue, withTiming } from 'react-native-reanimated';
 
 type Props = {
   data: { tag: string; count: number }[];
@@ -25,14 +26,52 @@ const AreaCustom = ({data}: Props) => {
 
     const [insetWidth, setInsetWidth] = useState(4);
     const [insetColor, setInsetColor] = useState<string>(theme.colors.card);
+    const { state } = useChartTransformState();
+
+    const k = useSharedValue(1);
+    const tx = useSharedValue(0);
+    const ty = useSharedValue(0);
+
+
+      useAnimatedReaction(
+    () => {
+      return state.panActive.value || state.zoomActive.value;
+    },
+    (cv, pv) => {
+      if (!cv && pv) {
+        const vals = getTransformComponents(state.matrix.value);
+        k.value = vals.scaleX;
+        tx.value = vals.translateX;
+        ty.value = vals.translateY;
+
+        k.value = withTiming(1);
+        tx.value = withTiming(0);
+        ty.value = withTiming(0);
+      }
+    },
+  );
+
+    useAnimatedReaction(
+    () => {
+      return { k: k.value, tx: tx.value, ty: ty.value };
+    },
+    ({ k, tx, ty }) => {
+      const m = setTranslate(state.matrix.value, tx, ty);
+      state.matrix.value = setScale(m, k);
+    },
+  );
+
+
 
   return (
     <View style={styles.container}>
      <PolarChart
+        transformState={state}
         data={chartData}
         labelKey={"label"}
         valueKey={"value"} 
         colorKey={"color"} 
+        
       >
          <Pie.Chart>
               {({ slice }) => {

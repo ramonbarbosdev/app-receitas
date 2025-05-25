@@ -23,7 +23,7 @@ function Graph() {
         <SafeAreaView style={styles.container}>
              <Header title="Analise" isMain={false} />
 
-             <ScrollView style={styles.scroll}>
+             <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
                  <View style={styles.scrollItems}>
                     <BarCustom data={frequencias}/>
                     <AreaCustom data={frequencias}/>
